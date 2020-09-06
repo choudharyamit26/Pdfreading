@@ -331,7 +331,8 @@ class ImportSeptemberPdf(View):
             UserNotification.objects.create(
                 to=admin,
                 title='Info',
-                body='Data crawled successfully on {}.'.format(today)
+                body='Data crawled successfully on {}.'.format(today),
+                status=True
             )
             prev_crawl_count = CrawlCount.objects.all()[0]
             print('prev_crawl_count----------->>>>>>', prev_crawl_count)
@@ -349,7 +350,8 @@ class ImportSeptemberPdf(View):
             UserNotification.objects.create(
                 to=admin,
                 title='Info',
-                body='Data was not available  on {}.'.format(today)
+                body='Data was not available  on {}.'.format(today),
+                status=False
             )
             return HttpResponse('failure')
 

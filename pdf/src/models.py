@@ -87,6 +87,7 @@ class UserNotification(models.Model):
     title = models.CharField(default='title', max_length=200)
     body = models.CharField(default='body', max_length=200)
     read = models.BooleanField(default=False)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

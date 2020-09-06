@@ -16,6 +16,7 @@
       .catch(function (error) {
         console.log("Error: " + error);
       });
+
 </script>
 <script>
     var protocol = window.location.protocol
@@ -32,6 +33,7 @@
       .catch(function (error) {
         console.log("Error: " + error);
       });
+
 </script>
 <div class="WrapperArea">
     <div class="WrapperBox">
@@ -40,8 +42,9 @@
 
             <div class="NotificationList">
                 {% for object in object_list %}
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                {% if object.status %}
+                <div class="list-group ">
+                    <a class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:#70E949;">
                         <figure class="pull-left"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></figure>
                         <div class="msg-right">
                             <div class="d-flex w-100 justify-content-between">
@@ -53,6 +56,21 @@
                         </div>
                     </a>
                 </div>
+                {% else %}
+                <div class="list-group bg-danger">
+                    <a class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:#A4F5F0;">
+                        <figure class="pull-left"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></figure>
+                        <div class="msg-right">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{object.title}}</h5>
+                                <small>{{object.created_at}}</small>
+                            </div>
+                            <p class="mb-1"> {{object.body}}</p>
+                            <!--                                                        <small>Donec id elit non mi porta.</small>-->
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
