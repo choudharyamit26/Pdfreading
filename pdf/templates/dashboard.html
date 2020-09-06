@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="WrapperArea">
+    <div class="WrapperBox">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+<!--        <div class="alert alert-info">-->
+<!--            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+<!--            <strong>23</strong> matches found-->
+<!--        </div>-->
+        <div class="Small-Wrapper">
+            <h4 class="Title">Dashboard</h4>
+
+            <div class="DashboardArea">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <aside>
+                            <h4>Total Number of times Data crawled</h4>
+                            <h2>{{ prev_crawl_count }}</h2>
+                            <h5><span>Total Number of times Data crawled :</span> {{ prev_crawl_count }}</h5>
+                        </aside>
+                    </div>
+                    <div class="col-sm-6">
+                        <aside>
+                            <h4>Last When Data Crawled On</h4>
+                            <h2>{{ latest_crawl_date }}</h2>
+                            <h5><span>Last when data crawled on :</span> {{ latest_crawl_date }}</h5>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock body %}

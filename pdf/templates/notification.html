@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block body %}
+<script>
+    var protocol = window.location.protocol
+    var hostname = window.location.hostname
+    var port = window.location.port
+    var url = protocol + "//" + hostname + ":" + port  + "/read-notification" + "/"
+    console.log(url)
+    fetch(url)
+      .then(function (response) {
+        return response;
+      })
+      .then(function (myJson) {
+        console.log(myJson)
+      })
+      .catch(function (error) {
+        console.log("Error: " + error);
+      });
+</script>
+<script>
+    var protocol = window.location.protocol
+    var hostname = window.location.hostname
+    var port = window.location.port
+    var url = protocol + "//" + hostname + ":" + port + "/notification-count" + "/"
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        document.querySelector("#count").innerHTML = myJson;
+      })
+      .catch(function (error) {
+        console.log("Error: " + error);
+      });
+</script>
+<div class="WrapperArea">
+    <div class="WrapperBox">
+        <div class="Small-Wrapper">
+            <h4 class="Title">Notifications</h4>
+
+            <div class="NotificationList">
+                {% for object in object_list %}
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                        <figure class="pull-left"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></figure>
+                        <div class="msg-right">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{object.title}}</h5>
+                                <small>{{object.created_at}}</small>
+                            </div>
+                            <p class="mb-1"> {{object.body}}</p>
+                            <!--                                                        <small>Donec id elit non mi porta.</small>-->
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

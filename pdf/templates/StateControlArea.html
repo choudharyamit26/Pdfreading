@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="WrapperArea">
+    <div class="WrapperBox">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="Small-Wrapper">
+            <h4 class="Title"> Daily Renewable Generation Report
+            </h4>
+
+            <div class="Filter">
+                <form method="get">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="date" name="from_date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="date" name="to_date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="Button" type="submit">Apply</button>
+                    </div>
+                </form>
+            </div>
+            <div class="TableList">
+                <div class="dragscroll">
+                    <table style="width: 150vw">
+                        <thead>
+                        <tr>
+                            <th>S. No</th>
+                            <th>Date</th>
+                            <th>State/Region</th>
+                            <th>Wind Energy</th>
+                            <th>Solar Energy</th>
+                            <th>Hydro Energy</th>
+                            <th>Total</th>
+                            <th>Cumulative Wind Energy</th>
+                            <th>Cumulative Solar Energy</th>
+                            <th>Cumulative Hydro Energy</th>
+                            <th>Cumulative Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for object in report %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{object.date}}</td>
+                            <td>{{object.state_region}}</td>
+                            <td>{{object.wind_energy}}</td>
+                            <td>{{object.solar_energy}}</td>
+                            <td>{{object.hydro_energy}}</td>
+                            <td>{{object.total}}</td>
+                            <td>{{object.cum_wind_energy}}</td>
+                            <td>{{object.cum_solar_energy}}</td>
+                            <td>{{object.cum_hydro_energy}}</td>
+                            <td>{{object.cum_total}}</td>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
